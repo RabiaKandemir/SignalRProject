@@ -12,6 +12,11 @@ namespace SignalRApi.Mapping
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
+            CreateMap<Product, ResultProductWithCategory>()
+
+               .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName))
+
+               .ReverseMap();
         }
     }
 }
