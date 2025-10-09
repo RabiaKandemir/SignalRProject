@@ -52,7 +52,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("Kategori başarılı bir şekilde Güncellendi.");
         }
-        [HttpGet("GetCategory")]
+        [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
             var value = _categoryService.TGetById(id);
