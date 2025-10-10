@@ -58,8 +58,8 @@ namespace SignalRApi.Controllers
             });
             return Ok("Müşteri yorum bilgisi başarılı bir şekilde Güncellendi.");
         }
-        [HttpGet("GetTestimonial")]
-        public IActionResult GetTestimonial(int id)
+		[HttpGet("{id}")]
+		public IActionResult GetTestimonial(int id)
         {
             var value = _testimonialService.TGetById(id);
             return Ok(value);

@@ -56,7 +56,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İletişim bilgisi başarılı bir şekilde Güncellendi.");
         }
-        [HttpGet("GetContact")]
+        [HttpGet("{id}")]
         public IActionResult GetContact(int id)
         {
             var value = _contactService.TGetById(id);

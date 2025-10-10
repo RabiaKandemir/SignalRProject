@@ -56,8 +56,8 @@ namespace SignalRApi.Controllers
             });
             return Ok("İndirim bilgisi başarılı bir şekilde Güncellendi.");
         }
-        [HttpGet("GetDiscount")]
-        public IActionResult GetDiscount(int id)
+		[HttpGet("{id}")]
+		public IActionResult GetDiscount(int id)
         {
             var value = _discountService.TGetById(id);
             return Ok(value);

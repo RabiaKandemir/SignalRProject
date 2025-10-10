@@ -61,8 +61,8 @@ namespace SignalRApi.Controllers
             });
             return Ok("Öne çıkan alan başarılı bir şekilde Güncellendi.");
         }
-        [HttpGet("GetFeature")]
-        public IActionResult GetFeature(int id)
+		[HttpGet("{id}")]
+		public IActionResult GetFeature(int id)
         {
             var value = _featureService.TGetById(id);
             return Ok(value);
