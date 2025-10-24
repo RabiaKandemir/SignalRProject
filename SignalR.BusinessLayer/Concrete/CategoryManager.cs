@@ -1,5 +1,6 @@
 ﻿using SignalR.BusinessLayer.Abstact;
 using SignalR.DataAccessLayer.Abstract;
+using SignalR.DataAccessLayer.Migrations;
 using SignalR.EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,19 @@ namespace SignalR.BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
+        public int TActiveCategoryCount()
+        {
+            return _categoryDal.ActiveCategoryCount();
+        }
+
         public void TAdd(Category entity)
         {
             _categoryDal.Add(entity);
+        }
+
+        public int TCategoryCount()
+        {
+           return _categoryDal.CategoryCount();
         }
 
         public void TDelete(Category entity)
@@ -36,6 +47,11 @@ namespace SignalR.BusinessLayer.Concrete
         public List<Category> TGetListAll()
         {
            return _categoryDal.GetListAll();
+        }
+
+        public int TPassiveCategoryCount()
+        {
+            return _categoryDal.PassiveCategoryCount();
         }
 
         public void TUpdate(Category entity)
