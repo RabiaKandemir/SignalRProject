@@ -4,7 +4,7 @@ using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping
 {
-    public class AboutMapping:Profile
+    public partial class AboutMapping:Profile
     {
         public AboutMapping()
         {
