@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Abstact
 {
-    public interface IAboutService:IGenericService<About>
+	public interface IAboutService:IGenericService<About>
     {
     }
 }

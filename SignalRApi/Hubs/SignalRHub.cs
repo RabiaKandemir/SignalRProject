@@ -12,18 +12,20 @@ namespace SignalRApi.Hubs
         private readonly IMenuTableService _menuTableService;
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IBookingService _bookingService;
+        private readonly INotificationService _notificationService;
 
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMenuTableService menuTableService, IMoneyCaseService moneyCaseService, IBookingService bookingService)
-        {
-            _categoryService = categoryService;
-            _productService = productService;
-            _orderService = orderService;
-            _menuTableService = menuTableService;
-            _moneyCaseService = moneyCaseService;
-            _bookingService = bookingService;
-        }
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMenuTableService menuTableService, IMoneyCaseService moneyCaseService, IBookingService bookingService, INotificationService notificationService)
+		{
+			_categoryService = categoryService;
+			_productService = productService;
+			_orderService = orderService;
+			_menuTableService = menuTableService;
+			_moneyCaseService = moneyCaseService;
+			_bookingService = bookingService;
+			_notificationService = notificationService;
+		}
 
-        public async Task SendStatistic()
+		public async Task SendStatistic()
         {
             var value = _categoryService.TCategoryCount();
             await Clients.All.SendAsync("ReceiveCategoryCount",value);
@@ -86,5 +88,13 @@ namespace SignalRApi.Hubs
             var values = _bookingService.TGetListAll();
             await Clients.All.SendAsync("ReceiveBookingList", values);
         }
+        public async Task SendNotification()
+        {
+			var value = _notificationService.TNotificationCountByStatusFalse();
+			await Clients.All.SendAsync("ReceiveNotificationCountByFalse", value);
+
+            var notificationListByFalse = _notificationService.TGetNotificationByFalse();
+            await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
+		}
     }
 }
